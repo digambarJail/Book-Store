@@ -86,6 +86,8 @@ const returnBook = async (req: Request<any, any, any, QueryParams>, res: Respons
 
         if(user){
             user.payableRent = user.payableRent + totalRent;
+
+            await user.save();
         }
 
         // Save the updated transaction

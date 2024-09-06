@@ -1,58 +1,162 @@
-<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Node.js App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 20px;
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            color: #2980b9;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .route {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .route p {
+            margin: 5px 0;
+            font-size: 0.95rem;
+        }
+
+        .route p a {
+            color: #e74c3c;
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .route p a:hover {
+            text-decoration: underline;
+        }
+
+        .abbreviations {
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #2c3e50;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Routes</h1>
+    <h1>API Routes</h1>
+    <div class="container">
+        <div class="route">
+            <h2>Input: Get all Users</h2>
+            <p>Route: <a href="https://book-store-84io.onrender.com/api/getUsers">https://book-store-84io.onrender.com/api/getUsers</a></p>
+            <p>Example: <a href="https://book-store-84io.onrender.com/api/getUsers">https://book-store-84io.onrender.com/api/getUsers</a></p>
+        </div>
 
-    <h2>Input:- Get all Users</h2>
-    <p>Route :- https://book-store-84io.onrender.com/api/getUsers</p>
-    <p>Example :- https://book-store-84io.onrender.com/api/getUsers</p>
+        <div class="route">
+            <h2>Input: Get all Books</h2>
+            <p>Route: <a href="https://book-store-84io.onrender.com/api/getBooks">https://book-store-84io.onrender.com/api/getBooks</a></p>
+            <p>Example: <a href="https://book-store-84io.onrender.com/api/getBooks">https://book-store-84io.onrender.com/api/getBooks</a></p>
+        </div>
 
-    <h2>Input:- Get all Books</h2>
-    <p>Route :- https://book-store-84io.onrender.com/api/getBooks</p>
-    <p>Example :- https://book-store-84io.onrender.com/api/getBooks</p>
+        <div class="route">
+            <h2>Input: BookName or term in bookname</h2>
+            <p>Route: <a href="https://book-store-84io.onrender.com/api/getBooks?search=gar">https://book-store-84io.onrender.com/api/getBooks?search=(bookname)</a></p>
+            <p>Example: <a href="https://book-store-84io.onrender.com/api/getBooks?search=gar">https://book-store-84io.onrender.com/api/getBooks?search=gar</a></p>
+        </div>
 
-    <h2>Input:- BookName or term in bookname</h2>
-    <p>Route :- https://book-store-84io.onrender.com/api/getBooks?search=(bookname)</p>
-    <p>Example :- https://book-store-84io.onrender.com/api/getBooks?search=gar</p>
+        <div class="route">
+            <h2>Input: Rent Price range</h2>
+            <p>Route: <a href="https://book-store-84io.onrender.com/api/getBooks?range=5-10">https://book-store-84io.onrender.com/api/getBooks?range=(from-to)</a></p>
+            <p>Example: <a href="https://book-store-84io.onrender.com/api/getBooks?range=5-10">https://book-store-84io.onrender.com/api/getBooks?range=5-10</a></p>
+        </div>
 
-    <h2>Input:- Rent Price range</h2>
-    <p>Route :- https://book-store-84io.onrender.com/api/getBooks?range=(from-to)</p>
-    <p>Example :- https://book-store-84io.onrender.com/api/getBooks?range=5-10</p>
+        <div class="route">
+            <h2>Input: Category + name/term + rent range</h2>
+            <p>Route: <a href="https://book-store-84io.onrender.com/api/getBooks?category=fiction&search=the&range=2-4">https://book-store-84io.onrender.com/api/getBooks?category=(category)&search=(search)&range=(range)</a></p>
+            <p>Example: <a href="https://book-store-84io.onrender.com/api/getBooks?category=fiction&search=the&range=2-4">https://book-store-84io.onrender.com/api/getBooks?category=fiction&search=the&range=2-4</a></p>
+        </div>
 
-    <h2>Input:- Rent Price range</h2>
-    <p>Route :- https://book-store-84io.onrender.com/api/getBooks?range=(from-to)</p>
-    <p>Example :- https://book-store-84io.onrender.com/api/getBooks?range=5-10</p>
+        <div class="route">
+            <h2>Input: BookName + User Id + IssueDate to issue a book</h2>
+            <p>Route: <a href="https://book-store-84io.onrender.com/api/issueBook?doi=2024-09-10&uid=3&bookName=Investing%20101">https://book-store-84io.onrender.com/api/issueBook?doi=(yyyy-mm-dd)&uid=(1,2,3,4,5)&bookName=(bookName)</a></p>
+            <p>Example: <a href="https://book-store-84io.onrender.com/api/issueBook?doi=2024-09-10&uid=3&bookName=Investing%20101">https://book-store-84io.onrender.com/api/issueBook?doi=2024-09-10&uid=3&bookName=Investing%20101</a></p>
+        </div>
 
-    <h2>Input:- Category + name/term + rent range</h2>
-    <p>Route :- https://book-store-84io.onrender.com/api/getBooks?category=(category)&search=(search)&range=(range)</p>
-    <p>Example :- https://book-store-84io.onrender.com/api/getBooks?category=fiction&search=the&range=2-4</p>
+        <div class="route">
+            <h2>Input: BookName + User Id + ReturnDate to return a book</h2>
+            <p>Route: <a href="https://book-store-84io.onrender.com/api/returnBook?dor=2024-09-11&uid=3&bookName=Investing%20101">https://book-store-84io.onrender.com/api/returnBook?dor=(yyyy-mm-dd)&uid=(1,2,3,4,5)&bookName=(bookName)</a></p>
+            <p>Example: <a href="https://book-store-84io.onrender.com/api/returnBook?dor=2024-09-11&uid=3&bookName=Investing%20101">https://book-store-84io.onrender.com/api/returnBook?dor=2024-09-11&uid=3&bookName=Investing%20101</a></p>
+        </div>
 
-    <h2>Input:- BookName + User Id + IssueDate to issue a book</h2>
-    <p>Route :- https://book-store-84io.onrender.com/api/issueBook?doi=(yyyy-mm-dd)&uid=(1,2,3,4,5)&bookName=(bookName)/p>
-    <p>Example :- https://book-store-84io.onrender.com/api/issueBook?doi=2024-09-10&uid=3&bookName=Investing%20101</p>
+        <div class="route">
+            <h2>Input: BookName to return past and current issuers + total rent by that book</h2>
+            <p>Route: <a href="https://book-store-84io.onrender.com/api/getIssuers?bookName=Investing%20101">https://book-store-84io.onrender.com/api/getIssuers?bookName=(bookName)</a></p>
+            <p>Example: <a href="https://book-store-84io.onrender.com/api/getIssuers?bookName=Investing%20101">https://book-store-84io.onrender.com/api/getIssuers?bookName=Investing%20101</a></p>
+        </div>
 
-    <h2>Input:- BookName + User Id + ReturnDate to return a book</h2>
-    <p>Route :- https://book-store-84io.onrender.com/api/returnBook?dor=(yyyy-mm-dd)&uid=(1,2,3,4,5)&bookName=(bookName)/p>
-    <p>Example :- https://book-store-84io.onrender.com/api/returnBook?dor=2024-09-11&uid=3&bookName=Investing%20101</p>
+        <div class="route">
+            <h2>Input: User id to get all books issued to that person</h2>
+            <p>Route: <a href="https://book-store-84io.onrender.com/api/getBooksByUser?uid=3">https://book-store-84io.onrender.com/api/getBooksByUser?uid=(1,2,3,4,5)</a></p>
+            <p>Example: <a href="https://book-store-84io.onrender.com/api/getBooksByUser?uid=3">https://book-store-84io.onrender.com/api/getBooksByUser?uid=3</a></p>
+        </div>
 
-    <h2>Input:- BookName to return past and current issuers + total rent by that book</h2>
-    <p>Route :- https://book-store-84io.onrender.com/api/getIssuers?bookName=(bookName)/p>
-    <p>Example :- https://book-store-84io.onrender.com/api/getIssuers?bookName=Investing%20101</p>
+        <div class="route">
+            <h2>Input: Date range</h2>
+            <p>Route: <a href="https://book-store-84io.onrender.com/api/getBooksByDate?from=2024-09-01&to=2024-09-10">https://book-store-84io.onrender.com/api/getBooksByDate?from=(yyyy-mm-dd)&to=(yyyy-mm-dd)</a></p>
+            <p>Example: <a href="https://book-store-84io.onrender.com/api/getBooksByDate?from=2024-09-01&to=2024-09-10">https://book-store-84io.onrender.com/api/getBooksByDate?from=2024-09-01&to=2024-09-10</a></p>
+        </div>
+    </div>
 
-    <h2>Input:- User id to get all books issued to that person</h2>
-    <p>Route :- https://book-store-84io.onrender.com/api/getBooksByUser?uid=(1,2,3,4,5)/p>
-    <p>Example :- https://book-store-84io.onrender.com/api/getBooksByUser?uid=3</p>
-
-    <h2>Input:- Date range</h2>
-    <p>Route :- https://book-store-84io.onrender.com/api/getBooksByDate?from=(yyyy-mm-dd)&to=(yyyy-mm-dd)</p>
-    <p>Example :- https://book-store-84io.onrender.com/api/getBooksByDate?from=2024-09-01&to=2024-09-10</p>
-    
-
+    <footer>
+        © 2024 My Node.js App
+    </footer>
 </body>
 </html>
