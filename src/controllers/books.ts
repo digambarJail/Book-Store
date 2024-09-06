@@ -26,7 +26,7 @@ const getBooks = async (req: Request<any, any, any, QueryParams>, res: Response)
         }
 
         if (category) {
-            query.category = category;
+            query.category = { $regex: category, $options: 'i' };
         }
 
         const books = await Books.find(query);
