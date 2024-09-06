@@ -5,6 +5,7 @@ export interface IUser extends Document {
     name: string;
     contactNumber: number;
     address: string;
+    payableRent:number;
 }
 
 const usersSchema: Schema<IUser> = new Schema({
@@ -23,6 +24,10 @@ const usersSchema: Schema<IUser> = new Schema({
     address:{
         type:String,
         required:true
+    },
+    payableRent:{
+        type:Number,
+        default:0
     }
 }, { timestamps: true });
 

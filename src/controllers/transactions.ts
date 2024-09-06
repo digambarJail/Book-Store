@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { Transactions } from '../models/transactions';
 import { Books } from '../models/books';
+import { Users } from '../models/users';
 
 interface QueryParams {
     doi?: Date;
@@ -9,6 +10,7 @@ interface QueryParams {
     bookName?: string;
     from?:Date;
     to?:Date;
+    payableRent:number;
 }
 
 const issueBook = async (req: Request<any, any, any, QueryParams>, res: Response): Promise<Response> => {
@@ -79,6 +81,12 @@ const returnBook = async (req: Request<any, any, any, QueryParams>, res: Respons
         // Calculate total rent
         const totalRent = diffDays * book.rentPerDay;
         transaction.totalRent = totalRent;
+
+        const user = await Users.findOne({userId:uid})
+
+        if(user){
+            user.payableRent = user.payableRent + totalRent;
+        }
 
         // Save the updated transaction
         await transaction.save();

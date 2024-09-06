@@ -1,0 +1,58 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Node.js App</title>
+</head>
+<body>
+    <h1>Routes</h1>
+
+    <h2>Input:- Get all Users</h2>
+    <p>Route :- https://book-store-84io.onrender.com/api/getUsers</p>
+    <p>Example :- https://book-store-84io.onrender.com/api/getUsers</p>
+
+    <h2>Input:- Get all Books</h2>
+    <p>Route :- https://book-store-84io.onrender.com/api/getBooks</p>
+    <p>Example :- https://book-store-84io.onrender.com/api/getBooks</p>
+
+    <h2>Input:- BookName or term in bookname</h2>
+    <p>Route :- https://book-store-84io.onrender.com/api/getBooks?search=(bookname)</p>
+    <p>Example :- https://book-store-84io.onrender.com/api/getBooks?search=gar</p>
+
+    <h2>Input:- Rent Price range</h2>
+    <p>Route :- https://book-store-84io.onrender.com/api/getBooks?range=(from-to)</p>
+    <p>Example :- https://book-store-84io.onrender.com/api/getBooks?range=5-10</p>
+
+    <h2>Input:- Rent Price range</h2>
+    <p>Route :- https://book-store-84io.onrender.com/api/getBooks?range=(from-to)</p>
+    <p>Example :- https://book-store-84io.onrender.com/api/getBooks?range=5-10</p>
+
+    <h2>Input:- Category + name/term + rent range</h2>
+    <p>Route :- https://book-store-84io.onrender.com/api/getBooks?category=(category)&search=(search)&range=(range)</p>
+    <p>Example :- https://book-store-84io.onrender.com/api/getBooks?category=fiction&search=the&range=2-4</p>
+
+    <h2>Input:- BookName + User Id + IssueDate to issue a book</h2>
+    <p>Route :- https://book-store-84io.onrender.com/api/issueBook?doi=(yyyy-mm-dd)&uid=(1,2,3,4,5)&bookName=(bookName)/p>
+    <p>Example :- https://book-store-84io.onrender.com/api/issueBook?doi=2024-09-10&uid=3&bookName=Investing%20101</p>
+
+    <h2>Input:- BookName + User Id + ReturnDate to return a book</h2>
+    <p>Route :- https://book-store-84io.onrender.com/api/returnBook?dor=(yyyy-mm-dd)&uid=(1,2,3,4,5)&bookName=(bookName)/p>
+    <p>Example :- https://book-store-84io.onrender.com/api/returnBook?dor=2024-09-11&uid=3&bookName=Investing%20101</p>
+
+    <h2>Input:- BookName to return past and current issuers + total rent by that book</h2>
+    <p>Route :- https://book-store-84io.onrender.com/api/getIssuers?bookName=(bookName)/p>
+    <p>Example :- https://book-store-84io.onrender.com/api/getIssuers?bookName=Investing%20101</p>
+
+    <h2>Input:- User id to get all books issued to that person</h2>
+    <p>Route :- https://book-store-84io.onrender.com/api/getBooksByUser?uid=(1,2,3,4,5)/p>
+    <p>Example :- https://book-store-84io.onrender.com/api/getBooksByUser?uid=3</p>
+
+    <h2>Input:- Date range</h2>
+    <p>Route :- https://book-store-84io.onrender.com/api/getBooksByDate?from=(yyyy-mm-dd)&to=(yyyy-mm-dd)</p>
+    <p>Example :- https://book-store-84io.onrender.com/api/getBooksByDate?from=2024-09-01&to=2024-09-10</p>
+    
+
+</body>
+</html>
