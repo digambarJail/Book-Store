@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 
 
 // Start server
-const PORT = process.env.PORT || 8000; // Default to port 3000 if not set
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
     console.log(`Listening on PORT ${PORT}!`);
 });
