@@ -50,53 +50,55 @@ const issueBook = async (req: Request<any, any, any, QueryParams>, res: Response
 const returnBook = async (req: Request<any, any, any, QueryParams>, res: Response): Promise<Response> => {
     try {
         const { dor, uid, bookName } = req.query;
-        // Parse DOI and create a date object with time set to 00:00:00
+
+        // Validate and parse the return date
         const returnDate = new Date(dor as unknown as string);
         if (isNaN(returnDate.getTime())) {
             return res.status(400).json({ message: "Invalid return date format" });
         }
-
-        // Set time to 00:00:00 to ensure only date is considered
         returnDate.setHours(0, 0, 0, 0);
 
-        const transaction = await Transactions.findOne({userId:uid, bookName})
-
-        if(!transaction){
-            return res.status(500).json({ message: "An error occurred" });
+        // Find the transaction
+        const transaction = await Transactions.findOne({ userId: Number(uid), bookName });
+        if (!transaction) {
+            return res.status(404).json({ message: "Transaction not found" });
         }
+        transaction.returnDate = returnDate;
 
-        transaction.returnDate = await returnDate;
-
+        // Find the book
         const book = await Books.findOne({ bookName });
         if (!book || !book.rentPerDay) {
             return res.status(404).json({ message: "Book or rentPerDay not found" });
         }
 
-        // Calculate the rent based on the number of days between issueDate and returnDate
+        // Calculate total rent
         const issueDate = new Date(transaction.issueDate);
         issueDate.setHours(0, 0, 0, 0); // Normalize time
         const diffTime = Math.abs(returnDate.getTime() - issueDate.getTime());
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
-
-        // Calculate total rent
         const totalRent = diffDays * book.rentPerDay;
         transaction.totalRent = totalRent;
-
-        const user = await Users.findOne({userId:uid})
-
-        if(user){
-            user.payableRent = user.payableRent + totalRent;
-
-            await user.save();
-        }
-
-        // Save the updated transaction
         await transaction.save();
 
+        // Update the user
+        const user = await Users.findOneAndUpdate(
+            { userId: Number(uid) },  // Query based on userId
+            { $inc: { payableRent: totalRent } },  // Increment payableRent
+            { new: true }  // Return the updated document
+        );
+
+        if (!user) {
+            console.log('User not found');
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        console.log('Updated user:', user);
+
+        console.log('before final returning',transaction,totalRent)
+        // Return success response
         return res.status(200).json({ message: "Book returned successfully", transaction, totalRent });
 
     } catch (error: any) {
-        console.error("Error fetching books", error);
         return res.status(500).json({ message: "An error occurred", error: error.message });
     }
 };
