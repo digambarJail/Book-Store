@@ -99,12 +99,18 @@ const getIssuers = async (req: Request<any, any, any, QueryParams>, res: Respons
 
         // Separate past issuers (those who have returned the book) from the current issuer
         const pastIssuers = transactions.filter(transaction => transaction.returnDate);
+        const pastUsers = pastIssuers.map(issuer => issuer.userId)
+
         const currentIssuer = transactions.find(transaction => !transaction.returnDate);
 
 
         const totalRent = pastIssuers.reduce((sum, issuer) => sum + (issuer.totalRent || 0), 0);
 
-        return res.status(200).json({ pastIssuers, currentIssuer, totalRent });
+        if(currentIssuer){
+            return res.status(200).json({ pastIssuers, currentIssuer, totalRent });
+        }
+
+        return res.status(200).json({ pastIssuers, message:"No current Issuer", totalRent });
 
     } catch (error: any) {
         console.error("Error fetching book transactions", error);
